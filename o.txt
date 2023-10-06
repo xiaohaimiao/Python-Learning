@@ -1,0 +1,25 @@
+数据类型：
+string str()
+
+
+
+
+引用常用库：
+random
+
+
+字符串操作函数：
+
+extend()
+
+
+数组操作函数：
+max()
+min
+
+
+int
+ins
+str
+whilt
+del
