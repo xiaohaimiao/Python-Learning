@@ -16,7 +16,7 @@ def Creat_Random_Int_List(min, max, length):
     # top 最高, low/bottom 底部
     list = []
     for i in range(length):
-        list.append(random.randrange(min, max + 1))
+        list.append(random.randint(min, max))
     return list
 
 # 选择排序：每轮比较后交换
