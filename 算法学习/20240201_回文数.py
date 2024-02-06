@@ -47,7 +47,7 @@ def qiuDiJiWei(n:int, pos:int):
 def isHuiWenShu4(n:int):
     string = str(n) 
     length = len(string)
-    for i in range(length//2):
+    for i in range(length//2): # 这里有优化
         digit1 = qiuDiJiWei(n, i+1)
         digit2 = qiuDiJiWei(n, length-i)
         #print(n, i, digit1, digit2, length)
@@ -55,7 +55,17 @@ def isHuiWenShu4(n:int):
         if digit1 != digit2:
             return False
     return True
-        
+
+# 基于第4种方法的变体        
+def isHuiWenShu5(number:int):
+    if number < 0:
+        return False
+    temp = number
+    palindromeNum = 0
+    while temp != 0:
+        palindromeNum = palindromeNum*10 + temp%10
+        temp //= 10
+    return palindromeNum == number
 
 if __name__ == "__main__":
     for i in range(10):
@@ -66,7 +76,7 @@ if __name__ == "__main__":
     
     result = []
     for i in range(1000, 10000):
-        if isHuiWenShu4(i):
+        if isHuiWenShu5(i):
             result.append(i)
     print("回文数:", result)
     
