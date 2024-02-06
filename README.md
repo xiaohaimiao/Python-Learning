@@ -37,6 +37,8 @@
    > 一个数除以另外一个数，余数为零，是整除。
 
 4. **优化算法**：先把基础算法做出来，再进一步优化。
+   
+   ---
 
 ### 2. 回文数
 
@@ -51,16 +53,20 @@
 **解法思路：（先不要看，自己想了再对照）**
 
 1. 转字符串，利用**字符串反转**，**数值转字符串**，比较反转前后的**字符串的数值**；
+   
+   1. Python 特有的方法，在其它语言中<u>**非通用**</u>
+   
+   2. Python 列表自带的函数，在不支持类似方法的语言中<u>**非通用**</u>
 
 2. 转字符串，**判断对称位置字符是否相同**：
    
-   1. 转为列表，取列表中对称位置的字符**进行字符比较**；
+   1. 转为列表，用索引取列表中对称位置的字符**进行字符比较**；
    
    2. 不转为列表，用字符串操作函数取对称位置的的字符**进行字符比较**；
 
 3. 不转字符串，**用数学方法取数值的对称位置的数字**（digit）<u>**进行数值比较**</u>。
    
-   **<u><mark>——都要掌握，尤其必须掌握 解法3</mark></u>**
+   **<u><mark>——都要掌握，尤其必须掌握 解法思路3</mark></u>**
 
 **编程扩展：**
 
@@ -75,40 +81,98 @@
 
 3. 熟悉 Python 特有的取逆向字符串的方式，但要学会用非 Python 的标准方法实现：
    
-   1. Python 特有: string[ : :-1]
+   1. Python 特有<u><strong>非通用</strong></u>，反向取字符串: string[ : :-1]
       
       ```python
-      number = 12345
-      string = str(number)
-      reverseString = string[ : :-1] # 逆向取字符串
-      print(number, string, reverseString)
+      def isHuiWenShu1(number:int):
+          # 获得数字对应的字符串
+          digits = str(number)
+          # 逆向取字符串
+          reverseDigits = digits[ : :-1] 
+          # 返回两个列表是否相等的逻辑值 
+          return digits == reverseDigits
       ```
    
-   2. Python 特有 list.reverse(): 
+   2. Python 特有<u><strong>非通用</strong></u>，将列表反序： list.reverse()
+      ——部分语言内置函数库或开发框架也有类似方法，属于语言特色
       
       ```python
-      list = ['1', '2', '3', '4', '5']
-      reverseList = list.reverse() # 逆向取数组
-      # reverseList = ['5', '4', '3', '2', '1']
-      text = "".join(reverseList) # 将数组元素连接为字符串
-      print(list, reverseList, text)
+      def isHuiWenShu2(number:int):
+          # 获得数字对应的字符串
+          digits = str(number)
+          # 从字符串构造列表
+          digitList = list(digits) # ['1', '2', '3', '4', '5']
+          # 逆向取新的列表
+          reverseList = digitList.reverse() # ['5', '4', '3', '2', '1']
+          #text = "".join(reverseList) # 可将数组元素连接为字符串用于显示等
+          # 返回两个列表是否相等的逻辑值
+          return digitList == reverseList
       ```
    
-   3. 标准方法，语言无关：**<mark>用数学方法取数值的对称位置的数字</mark>**
+   3. 标准方法，语言无关：用字符串操作判断对应位置字符是否相同
+      
+      **注：主要目的是练习使用正确的索引值范围，避免出错。**
+      
+      **注：不同语言的字符串取值操作方式和函数不同。**
+      
+      略，请自行练习。
+   
+   4. 标准方法，语言无关：用列表操作判断对应位置字符是否相同
+      
+      **注：与上一项区别不大，需要用到字符串转列表 list(str(number))**
+      
+      **注：不同语言的字符串取值操作方式和函数不同。**
+      
+      略，请自行练习。
+   
+   5. 标准方法，语言无关：**<mark>用数学方法取数值的对称位置的数字</mark>**
+      
+      **思路提示：**
+      
+      > 十进制数的每一位，对应的数学含义是 10 的 n-1 次方。
+      > 
+      > 例如：
+      > 
+      > 千位对应着 10 的 3-1 次方，也就是 100；
+      > 
+      > 12345 的千位是 2，意味着 2 x 100
+      
+      例如：12345 整个数字拆分为：
+      
+      $$
+      1*10^4 + 2*10^3 + 3*10^2 + 4*10^1 + 5*10^0
+      $$
+      
+      也就是：
+      
+      $$
+      10000 + 2000 + 300 + 40 + 5 = 12345
+      $$
+      
+      **求某一位，意味着将该数字缩小 10 的 n-1 次方倍，然后求其除以 10 的余数。**
+      
+      > 比如 12345 的百分位是：12345 // 100 % 10 = 3
+      
+      所以，请自行完成以下代码：
       
       ```python
       # 用数学方法求指定位置上的数字，比如 12345，求第右边数第2位（十位）和第4位（千位）
       def qiuMouWeiShuZi(number:int, pos:int):
-          x = number    # 12345
+          x = number    # 比如 12345
           # 略，考验你的时候到了，请自行补全代码
       
           return x
       
-          n = 12345
-      # 请自行补全代码，加上循环对比每一位与对称位置的数字
-          digit1 = qiuMouWeiShuZi(n, 2)
-          digit2 = qiuMouWeiShuZi(n, 4)
-          print(digit1, digit2, digit1 == digit2)
+      def isHuiWenShu5(number:int):
+          # 请自行补全代码，加上循环对比每一位与对称位置的数字
+          #for i in ...
+              #digit1 = qiuMouWeiShuZi(n, i??)
+              #digit2 = qiuMouWeiShuZi(n, i??)
+              #print(digit1, digit2, digit1 == digit2)
+              # 如果不相等，则
+      
+              # 否则
+          #return True/False ?
       ```
 
 ### 3. 求水仙花数
