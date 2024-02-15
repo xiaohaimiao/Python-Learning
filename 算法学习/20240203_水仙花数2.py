@@ -8,20 +8,20 @@ def isShuiXianHuaShu(number:int, power:int):
 
 def isShuiXianHuaShu2(number:int, power:int):
     digits = str(number)
-    list = (int(digit)**power for digit in digits)
+    list = [int(digit)**power for digit in digits]
     summary = sum(list)
-#    if (summary == number):
-#        list2 = { int(digit) : int(digit)**power for digit in digits }
-#        print(list2, sum(list2))
+
     return summary == number
+    #return number == sum([int(digit)**power for digit in str(number)])
 
 def find_narcissistic_numbers(power:int = 3):
     result = []
     for i in range(10**(power - 1), 10**power):
         if isShuiXianHuaShu2(i, power):
             result.append(i)
-        
+   
     return result
+    #return [i for i in range(10**(power - 1), 10**power) if isShuiXianHuaShu2(i, power)]
 
 if __name__ == "__main__":
     n = 3
