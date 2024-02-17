@@ -216,13 +216,13 @@
 > 
 > $ 1×10^4 + 2×10^3 + 3×10^2 + 4×10^1 + 5×10^0 $
 > 
-> = 1×10000 + 2×1000 + 3×100 + 4×10 + 5×1 = 12345
+> $= 1×10000 + 2×1000 + 3×100 + 4×10 + 5×1 = 12345$
 > 
 > 八进制的 12345 意味着（转为十进制）：
 > 
 > $ 1×8^4 + 2×8^3 + 3×8^2 + 4×8^1 + 5×8^0 $
 > 
-> = 1×4096 + 2×512 + 3×64 + 4×8 + 5×1 = 5349
+> $= 1 × 4096 + 2 × 512 + 3 × 64 + 4 × 8 + 5 × 1 = 5349$
 > 
 > 十六进制的 12345 意味着（转为十进制）：
 > 
@@ -254,7 +254,7 @@
 
 **基本思路：**
 
-> 也就是说，如果一个三位数的个位数字的立方、十位数字的立方和百位数字的立方之和等于这个三位数本身，那么这个数就被称为水仙花数。例如，153是一个水仙花数，因为 1^3 + 5^3 + 3^3 = 153。
+> 也就是说，如果一个三位数的个位数字的立方、十位数字的立方和百位数字的立方之和等于这个三位数本身，那么这个数就被称为水仙花数。例如，153是一个水仙花数，因为 $1^3 + 5^3 + 3^3 = 153$。
 
 很显然，又需要拆分数字了。
 
@@ -267,87 +267,87 @@
 请先自行实现判断一个数字是否是水仙花数的函数，对照看下面的代码如何演进。
 
 1. **版本 1.0：** 通用解法
-   
-   ```python
-   # 判断一个数字是否是水仙花数，这里默认按每位上的数字的三次方计算
-   def isShuiXianHuaShu1(number:int, power:int = 3):
-      # 将整数值的 number 转为字符串 digits
-      digits = str(number)
-      summation = 0    # 这一句可以省略：Python 中不需要定义变量和赋予初始值
-      for i in range(len(digits)):       # 循环，用 number 的长度作为循环次数
-          item = int(digits[i])**power   # 计算每一位的 power 次方
-          summation += item                # 累加
-   
-      return summation == number    # 是否是水仙花数   # 累加
-   ```
+
+```python
+# 判断一个数字是否是水仙花数，这里默认按每位上的数字的三次方计算
+def isShuiXianHuaShu1(number:int, power:int = 3):
+    # 将整数值的 number 转为字符串 digits
+    digits = str(number)
+    summation = 0    # 这一句可以省略：Python 中不需要定义变量和赋予初始值
+    for i in range(len(digits)):       # 循环，用 number 的长度作为循环次数
+        item = int(digits[i])**power   # 计算每一位的 power 次方
+        summation += item                # 累加
+
+    return summation == number    # 是否是水仙花数   # 累加
+```
 
 2. **版本 2：** 基于索引的循环和取值方式改为迭代
    
    将 “循环获取每一位数字字符并求 power 次幂后进行累加” 这部分改为 
-   
-   ```python
-   for digit in digits:           # 迭代 number 的每一位
-       item = int(digit)**power   # 计算每一位的 p
-   ```
-   
+
+```python
+for digit in digits:           # 迭代 number 的每一位
+    item = int(digit)**power   # 计算每一位的 p
+```
+
    这样 <u>遍历数据结构的每一项</u> 的写法，叫做迭代（又叫枚举）。
-   
+
    ——只有<mark> 支持迭代/枚举的数据类型 </mark>能用这样的方法；
-   
+
    ——这样的数据类型又叫做 "<mark> 可迭代类型/可枚举类型 </mark>"；
-   
+
    ——Python 中的列表、元组、字典是 “ **可迭代类型/可枚举类型** ”；
-   
+
    ——注意：**部分语言支持迭代/枚举，所以需要掌握通用方法**。
-   
-   ```python
-   # 判断一个数字是否是水仙花数，这里默认按每位上的数字的三次方计算
-   def isShuiXianHuaShu2(number:int, power:int = 3):
-       # 将整数值的 number 转为字符串 digits
-       digits = str(number)
-   
-       summation = 0    # 这一句可以省略：Python 中不需要定义变量和赋予初始值
-       for digit in digits:           # 迭代 number 的每一位
-           item = int(digit)**power   # 计算每一位的 power 次方
-           summation += item            # 累加
-   
-       return summation == number    # 是否是水仙花数
-   ```
+
+```python
+# 判断一个数字是否是水仙花数，这里默认按每位上的数字的三次方计算
+def isShuiXianHuaShu2(number:int, power:int = 3):
+    # 将整数值的 number 转为字符串 digits
+    digits = str(number)
+
+    summation = 0    # 这一句可以省略：Python 中不需要定义变量和赋予初始值
+    for digit in digits:           # 迭代 number 的每一位
+        item = int(digit)**power   # 计算每一位的 power 次方
+        summation += item            # 累加
+
+    return summation == number    # 是否是水仙花数
+```
 
 3. **版本 3：** Python 推导式
    
-   用 Python 推导式，将 digits 字符串中的每一位转换成数值再求 power 次幂。
-   
-   ```python
-   # 判断一个数字是否是水仙花数，这里默认按每位上的数字的三次方计算
-   def isShuiXianHuaShu3(number:int, power:int = 3):
-       # 将整数值的 number 转为字符串 digits
-       digits = str(number)
-       # 用推导式生成一个列表，列表中的每个元素是 number 的每一位的 power 次方
-       list = [int(digit)**power for digit in digits]
-       # digit 是式子中的临时变量
-   
-       summation = 0    # 这一句可以省略：Python 中不需要定义变量和赋予初始值
-       for item in list:           # 迭代列表中的每一个元素，对应 number 的每一位的 power 次方
-           summation += item         # 累加
-   
-       return summation == number    # 是否是水仙花数
-   ```
+   用 Python 推导式，将 `digits` 字符串中的每一位转换成数值再求 `power` 次幂。
 
-4. **版本4：** 将迭代列表并累加求和部分，改为 Python 内置函数 $sum()$
+```python
+# 判断一个数字是否是水仙花数，这里默认按每位上的数字的三次方计算
+def isShuiXianHuaShu3(number:int, power:int = 3):
+    # 将整数值的 number 转为字符串 digits
+    digits = str(number)
+    # 用推导式生成一个列表，列表中的每个元素是 number 的每一位的 power 次方
+    list = [int(digit)**power for digit in digits]
+    # digit 是式子中的临时变量
 
-   注意：$sum()$ 函数可以对 <u>列表、元组、字典</u> 进行求和。
+    summation = 0    # 这一句可以省略：Python 中不需要定义变量和赋予初始值
+    for item in list:           # 迭代列表中的每一个元素，对应 number 的每一位的 power 次方
+        summation += item         # 累加
+
+    return summation == number    # 是否是水仙花数
+```
+
+4. **版本4：** 将迭代列表并累加求和部分，改为 Python 内置函数 `sum()`
+   
+   注意：`sum()` 函数可以对 <u>列表、元组、字典</u> 进行求和。
    ——注意观察：它们是 “<mark> **可迭代类型/可枚举类型** </mark>”，所以，... ...，请多想一想。
 
-   ```python
-   # 判断一个数字是否是水仙花数，这里默认按每位上的数字的三次方计算
-   def isShuiXianHuaShu4(number:int, power:int = 3):
-       digits = str(number)
-       list = [int(digit)**power for digit in digits]     #推导式， digit 是式子中的临时变量
-       summation = sum(list)         # 用 Python 内置的 sum 函数计算列表中所有元素的和
-   
-       return summation == number    # 是否是水仙花数素的和
-   ```
+```python
+# 判断一个数字是否是水仙花数，这里默认按每位上的数字的三次方计算
+def isShuiXianHuaShu4(number:int, power:int = 3):
+    digits = str(number)
+    list = [int(digit)**power for digit in digits]     #推导式， digit 是式子中的临时变量
+    summation = sum(list)         # 用 Python 内置的 sum 函数计算列表中所有元素的和
+
+    return summation == number    # 是否是水仙花数素的和
+```
 
 5. **版本5：** 基于 Python 语法糖的**极简 “优化”**
 
@@ -427,7 +427,7 @@ print(factorial(n))           # 输出：120
 
 > 递推是指根据已知的初始条件和递推公式，通过迭代计算来求解问题的方法。在递推中，问题的解是通过不断迭代计算前一项或多项得到的。
 
-进一步思考，很显然，求 5! 先求 4!，因为 5! = 4! × 5，阶和类似。
+进一步思考，很显然，求 `5!` 先求 `4!`，因为 `5! = 4! × 5`，阶和类似。
 
 那么，泛化推理可以得到结论：求 n! 就相当于先求 (n-1)! 然后乘以 n，可以表示为：
 
@@ -464,7 +464,7 @@ def factorial(n:int):
         return n * factorial(n-1)
 ```
 
-于是，将求阶和、求阶乘的方式，从循环 1 - n 的递推方式，改为了 **"自己调用自己" 的递归方式**。
+于是，将求阶和、求阶乘的方式，从循环 `1 - n` 的递推方式，改为了 **"自己调用自己" 的递归方式**。
 
 ——理解起来，简单多了。
 
@@ -509,9 +509,9 @@ def factorial(n:int):
 
 **背景介绍：**
 
-> 斐波那契数列是一个经典的数学序列，以数学家列昂纳多·斐波那契（Leonardo Fibonacci）的名字命名。这个序列的前两个数字是0和1，后续的每个数字都是前两个数字之和。换句话说，第三个数字是前两个数字的和，第四个数字是前两个数字之和，以此类推。
+> 斐波那契数列是一个经典的数学序列，以数学家列昂纳多·斐波那契（`Leonardo Fibonacci`）的名字命名。这个序列的前两个数字是0和1，后续的每个数字都是前两个数字之和。换句话说，第三个数字是前两个数字的和，第四个数字是前两个数字之和，以此类推。
 > 
-> 斐波那契数列的前几个数字依次是0、1、1、2、3、5、8、13、21、34等等。这个序列在数学和计算机科学中具有广泛的应用。它的特点包括：
+> 斐波那契数列的前几个数字依次是 `0、1、1、2、3、5、8、13、21、34` 等等。这个序列在数学和计算机科学中具有广泛的应用。它的特点包括：
 > 
 > 1. 递归性质：斐波那契数列的定义本身就是递归的，每个数字都是前两个数字之和。这种递归性质也可以通过递归函数来实现。
 > 
@@ -596,13 +596,13 @@ print(fibonacci_recursive(n)) # 输出：[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
 > 
 > 辗转相除法来自于古希腊数学家欧几里德 `Euclidean`，他在公元前300年左右的著作《几何原本》中首次描述了这个算法，因此也被称为欧几里德算法（`Euclidean algorithm`）。
 > 
-> 据传，欧几里德的弟子乌克拉底`Uclides`向欧几里德请教如何找到两个数的最大公约数。欧几里德很快就给了他一个简单而巧妙的方法。他告诉乌克拉底，如果两个数能够整除，那么其中较小的数就是最大公约数。但是，如果两个数不能整除，那么我们用较小的数去除以较大的数，然后再用余数去除以刚才的较小数。这个过程一直重复下去，直到找到一个能整除的数，这个数就是最大公约数。
+> 据传，欧几里德的弟子乌克拉底 `Uclides` 向欧几里德请教如何找到两个数的最大公约数。欧几里德很快就给了他一个简单而巧妙的方法。他告诉乌克拉底，如果两个数能够整除，那么其中较小的数就是最大公约数。但是，如果两个数不能整除，那么我们用较小的数去除以较大的数，然后再用余数去除以刚才的较小数。这个过程一直重复下去，直到找到一个能整除的数，这个数就是最大公约数。
 > 
 > 辗转相除法的思想是利用两个整数的除法运算和取余运算来逐步缩小问题的规模，直到找到最大公约数。这个算法的重要性在于它是一种高效的方法，即使在大整数的情况下也能很快地求解最大公约数。
 
 **题目：**
 
-> 请编写一个函数 gcd(a, b)，其中 a 和 b 分别是两个整数。函数要求使用欧几里德算法（辗转相除法）求解 a 和 b 的最大公约数，并返回结果。
+> 请编写一个函数 `gcd(a, b)`，其中 `a` 和 `b` 分别是两个整数。函数要求使用欧几里德算法（辗转相除法）求解 `a` 和 `b` 的最大公约数，并返回结果。
 > 请确保函数的输入和输出与上述要求一致。
 
 **基本思路：**
