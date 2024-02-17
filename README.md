@@ -752,8 +752,6 @@ hanoi_recursive(n, source, target, auxiliary)
 
 输出：
 
-
-
 > 移动 1 号盘，从 A 到 C
 > 移动 2 号盘，从 A 到 B
 > 移动 1 号盘，从 C 到 B
@@ -812,9 +810,191 @@ def hanoi_recursive(n:int, source, target, auxiliary):
 
 ---
 
-### 8. 递归法求解八皇后问题
+### 8. 求解迷宫问题
+
+当解决走迷宫问题时，需要找到从起点到终点的路径，其中迷宫由空格和墙壁组成。
+
+空格表示可通行的路径，墙壁表示不可通行的障碍物。
+
+目标是找到一条从起点到终点的路径，通过移动只能在相邻的空格之间进行。
+
+**题目**：请用递归方式编写一个 Python 函数，解决走迷宫问题。
+
+- 函数名为 `solve_maze(maze, start, end)`，接收三个参数：
+  - `maze` 是一个表示迷宫的二维列表，其中0表示空格，1表示墙壁。
+  - `start` 是一个表示起点位置的元组，例如 (x, y)，其中 x 和 y 分别表示起点的行和列。
+  - `end` 是一个表示终点位置的元组，例如 (x, y)，其中 x 和 y 分别表示终点的行和列。
+- 函数应该返回一个布尔值，表示是否存在从起点到终点的路径。
+
+**思路分析：**
+
+- 用递归来解决走迷宫问题。从起点开始，检查当前位置是否为终点，如果是，则返回 True 表示找到了一条路径。否则，我们尝试向上、向下、向左和向右四个方向移动，并递归调用函数来探索下一个位置。如果任何一个方向上找到了一条路径，则返回 True。如果所有方向都没有找到路径，则返回 False。
+- 在递归函数中，需要考虑边界情况，如迷宫的边界和墙壁的位置。还需要标记已经访问过的位置，以避免陷入无限递归的循环中。
+
+递归方式的解答和调用示例代码：
+
+```python
+def solve_maze(maze, start, end):
+    # 获取迷宫的行数和列数
+    rows = len(maze)
+    cols = len(maze[0])
+
+    # 检查当前位置是否在迷宫范围内
+    if start[0] < 0 or start[0] >= rows or start[1] < 0 or start[1] >= cols:
+        return False
+
+    # 检查当前位置是否为墙壁或已经访问过
+    if maze[start[0]][start[1]] == 1 or maze[start[0]][start[1]] == -1:
+        return False
+
+    # 检查当前位置是否为终点
+    if start == end:
+        return True
+
+    # 标记当前位置为已访问
+    maze[start[0]][start[1]] = -1
+
+    # 尝试向上、向下、向左和向右四个方向移动
+    if solve_maze(maze, (start[0] - 1, start[1]), end):  # 向上移动
+        return True
+    if solve_maze(maze, (start[0] + 1, start[1]), end):  # 向下移动
+        return True
+    if solve_maze(maze, (start[0], start[1] - 1), end):  # 向左移动
+        return True
+    if solve_maze(maze, (start[0], start[1] + 1), end):  # 向右移动
+        return True
+
+    # 没有找到路径，返回 False
+    return False
+
+# 迷宫示例，0表示空格，1表示墙壁
+maze = [
+    [0, 1, 0, 0, 0],
+    [0, 1, 0, 1, 0],
+    [0, 0, 0, 0, 0],
+    [0, 1, 1, 1, 0],
+    [0, 0, 0, 1, 0]
+]
+
+start = (0, 0)  # 起点位置
+end = (4, 4)  # 终点位置
+
+# 调用解答函数
+if solve_maze(maze, start, end):
+    print("存在从起点到终点的路径")
+else:
+    print("不存在从起点到终点的路径")
+```
+
+这段代码通过将迷宫的状态进行标记，避免重复访问和死循环。
+
+在调用示例中，给出了一个迷宫的示例，起点为 (0, 0) ，终点为 (4, 4)。程序会打印出是否存在从起点到终点的路径。
+
+**补充说明：**
+
+从编程学习的角度来看，<mark>走迷宫问题和八皇后问题都是经典的回溯算法问题</mark>，但在解决方法和难度上有一些不同。
+
+1. 解决方法：
+   
+   - 八皇后问题要求在一个8x8的棋盘上放置8个皇后，使得它们互相不能攻击到对方。解决这个问题需要考虑每个皇后的位置，以确保它们不在同一行、同一列和同一对角线上。
+   - 走迷宫问题是在一个迷宫中找到从起点到终点的路径。解决这个问题需要在迷宫中尝试不同的路径，通过回溯算法进行探索，直到找到一条通向终点的路径或者确定不存在路径。
+
+2. 难度：
+   
+   - 八皇后问题相对来说比较困难，因为需要考虑多个皇后之间的互斥关系，并且需要满足一定的约束条件。解决八皇后问题需要运用回溯算法和剪枝技巧，设计合适的数据结构和算法来搜索解空间。
+   - 走迷宫问题相对来说比较容易，因为只需要找到一条从起点到终点的路径即可。解决走迷宫问题同样需要运用回溯算法，但通常情况下不需要像八皇后问题那样复杂的约束条件。
+
+总的来说，八皇后问题和走迷宫问题都是很好的练习回溯算法和问题解决能力的题目。通过解决这些问题，可以提高对算法思维和编程技巧的理解，并培养解决复杂问题的能力。
 
 
+
+---
+
+### 9. 求解八皇后问题
+
+八皇后问题是一个经典的数学和计算机科学问题，旨在找到在一个8x8的棋盘上放置8个皇后，使得它们互相不能攻击到对方的情况下，所有皇后的位置组合。
+
+> 在国际象棋中，皇后是最强大的棋子，可以在横、竖和对角线上任意距离移动。因此，八皇后问题要求在8x8的棋盘上放置8个皇后，使得每个皇后都不在同一行、同一列和同一对角线上。
+> 
+> 由于皇后的特殊移动能力，这个问题本质上是一个组合优化问题。解决八皇后问题的一种常见方法是使用<mark>回溯算法</mark>。回溯算法通过尝试不同的解决方案，并进行适当的剪枝，直到找到所有满足条件的解决方案。
+
+八皇后问题是一个经典的练习问题，它有助于提高问题解决和编程技巧。通过解决这个问题，可以加深对回溯算法和组合优化问题的理解。
+
+**题目：** 请用递推和递归方式编写一个 Python 函数，解决八皇后问题。
+
+- 用递推方式实现的函数名为 `eight_queens_iterative()`，它应该返回一个包含所有可行解的列表。每个可行解都是一个列表，其中每个元素表示每行皇后所在的列号。
+- 用递归方式实现的函数名为 `eight_queens_recursive()`，它应该返回一个包含所有可行解的列表。每个可行解都是一个列表，其中每个元素表示每行皇后所在的列号。
+
+**思路分析：**
+
+- 要确保每个皇后在同一行、同一列和同一对角线上都没有其他皇后；
+- 递推方式可以使用循环来尝试不同的列号，逐行放置皇后；
+- 递归方式可以使用递归函数来尝试不同的列号，逐行放置皇后。
+
+当解决八皇后问题时，递推方式和递归方式的实现略有不同。
+
+下面是用Python编写的递推和递归方式的解答和测试代码：
+
+**递推方式：**
+
+```python
+def eight_queens_iterative():
+    solutions = []
+    stack = [(0, [])]  # 使用栈来存储每一行的状态，每个元素为 (row, queens)，其中 row 表示当前行数，queens 表示已放置皇后的列号列表
+
+    while stack:
+        row, queens = stack.pop()
+
+        if row == 8:  # 找到一个解
+            solutions.append(queens)
+        else:
+            for col in range(8):
+                if all(col != q and abs(row - i) != abs(col - q) for i, q in enumerate(queens)):
+                    stack.append((row + 1, queens + [col]))
+
+    return solutions
+
+solutions = eight_queens_iterative()
+for solution in solutions:
+    print(solution)
+```
+
+**递归方式：**
+
+```python
+def eight_queens_recursive(row=0, queens=[]):
+    if row == 8:
+        return [queens]
+
+    solutions = []
+    for col in range(8):
+        if all(col != q and abs(row - i) != abs(col - q) for i, q in enumerate(queens)):
+            solutions.extend(eight_queens_recursive(row + 1, queens + [col]))
+
+    return solutions
+
+solutions = eight_queens_recursive()
+for solution in solutions:
+    print(solution)
+```
+
+调用函数的示例代码：
+
+```python
+# 调用递推方式的八皇后问题解答函数
+solutions_iterative = eight_queens_iterative()
+print("递推方式解答八皇后问题:")
+for solution in solutions_iterative:
+    print(solution)
+
+# 调用递归方式的八皇后问题解答函数
+solutions_recursive = eight_queens_recursive()
+print("递归方式解答八皇后问题:")
+for solution in solutions_recursive:
+    print(solution)
+```
+
+注意：八皇后问题的解决方案可能有多个，每个解决方案都是一个列表，其中每个元素表示每行皇后所在的列号。因此，可能会有多行输出。
 
 ## 二、算法入门
 
