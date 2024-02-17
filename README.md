@@ -19,23 +19,23 @@
 
 **基本思路：**
 
-对于 n，用从 2 到 (n-1) 的数去整除 n，只要有一个数能整除则 n 不是素数，反之是素数。
+对于 `n`，用从 `2` 到 `(n-1)` 的数去整除 `n`，只要有一个数能整除则 `n` 不是素数，反之是素数。
 
 **要点提示：**
 
 1. **注意要求的范围**：比如题目中 1 到 100，是否包含1、是否包含100？
    
-   > 数学上把 (1, 100] 这样的集合称为：前开后闭的集合，范围是 1 < n ≤ 100，不包含1、包含100。类似的集合还有 (1, 100)，[1, 100]，(1, 100]，[1, 100)，以此类推。
+   > 数学上把 `(1, 100]` 这样的集合称为：前开后闭的集合，范围是 `1 < n ≤ 100`，不包含`1`、包含`100`。类似的集合还有 `(1, 100)`，`[1, 100]`，`(1, 100]`，`[1, 100)`，以此类推。
    
    因为 1 不是素数（质数），所以本题的范围应该是？
 
-2. **注意循环的起始和结束的边界范围**：比如 for i in range(1, 100)，对应上面的集合是哪一种？
+2. **注意循环的起始和结束的边界范围**：比如 `for i in range(1, 100)`，对应上面的集合是哪一种？
    
    注意：不同计算机编程语言中，甚至相同编程语言中不同函数，它们的取值范围可能不一样。
    
-   > 例如， range(1, 100) 对应的集合是 [1, 100)，而 range(100) 对应的集合是 [0, 100)。
+   > 例如， `range(1, 100)` 对应的集合是 `[1, 100)`，而 `range(100)` 对应的集合是 `[0, 100)`。
    > 
-   > 再例如，Python 中长度为 n 的列表的索引是从 0 开始到 n-1，范围是 [0, n)。代码中可用 range(n) 或者 range(0, n) 获得这个范围的整数值。如果试图用超过这个范围的数值作为索引访问列表中的某一项时，会导致代码运行时出现错误。
+   > 再例如，Python 中长度为 `n` 的列表的索引是从 `0` 开始到 `n-1`，范围是 `[0, n)`。代码中可用 `range(n)` 或者 `range(0, n)` 获得这个范围的整数值。如果试图用超过这个范围的数值作为索引访问列表中的某一项时，会导致代码运行时出现错误。
 
 3. **注意整除与除的区别**：
    
@@ -44,15 +44,15 @@
    > 
    > 数学角度：
    > 
-   > 10 ÷ 3 = 3 ... 1 —— 十除以三，商为三，余数为一，
+   > `10 ÷ 3 = 3 ... 1` —— 十除以三，商为三，余数为一，
    > 
-   > 用求余/求模运算：10 % 3 = 1。
+   > 用求余/求模运算：`10 % 3 = 1`。
    > 
    > 编程角度：
    > 
-   > 10 / 3 = 3.3333... 小数点后有几位，取决于不同的数据类型所保留精度的范围。
+   > `10 / 3 = 3.3333...` 小数点后有几位，取决于不同的数据类型所保留精度的范围，注意这一点，暂不展开。
    > 
-   > 整除运算：10 // 3 = 3 —— 十整除三，商为三，没有余数，此为 “整除” 。
+   > 整除运算：`10 // 3 = 3` —— 十整除三，商为三，没有余数，此为 “整除” 。
    > 
    > 在编程中，整除也可以用除后保留整数部分来实现，例如取整函数、将浮点型转换为整型来实现。因为不同编程语言细节有差异，暂不展开。
 
@@ -64,7 +64,7 @@
 
 **题目：找出四位数中的回文数，打印并计算个数。**
 
-> 回文数是对称数，指正向读与反向读是相同的，如12321,33433等。
+> 回文数是对称数，指正向读与反向读是相同的，如 12321，33433 等。
 
 **解法思路：（<u>先不要看，自己想了再对照</u>）**
 
@@ -72,7 +72,7 @@
 
 1. 反转字符串：利用**字符串反转**，**数值转字符串**，比较反转前后的**字符串的数值**；
    
-   1. Python 特有的方法，在其它语言中<u>**非通用**</u>
+   1. Python 特有的方法，在其它语言中<u>**非通用**</u>；
    
    2. Python 列表自带的函数，在不支持类似方法的语言中<u>**非通用**</u>
 
@@ -92,18 +92,18 @@
 
 2. 对比 Python 中两种取字符的方式：
    
-   1. 用 for 枚举字符串中的每个字符；
+   1. 用 `for` 枚举字符串中的每个字符；
    
-   2. 用 for i in range(n) 循环，并用索引方式访问字符串中的每个字符的方式 list[i] 
+   2. 用 `for i in range(n)` 循环，并用索引方式访问字符串中的每个字符的方式 list[i] 
       ——此种方式更通用，可适用于其它语言，如 C/C++、Java/C# 等。
 
 3. 熟悉 Python 特有的取逆向字符串的方式，但要学会用其它方法实现：
    
-   1. Python 特有/<u><strong>非通用</strong></u>，**<u>反向取字符串:</u> string[ : :-1]**
+   1. Python 特有/<u><strong>非通用</strong></u>，<u>**反向取字符串**</u>:   `string[ : :-1]`
       ——其它编程语言不支持
       
       ```python
-      def isHuiWenShu1(number:int):
+      def isPalindrome1(number:int):
           # 获得数字对应的字符串
           digits = str(number)
           # 逆向取字符串
@@ -112,11 +112,11 @@
           return digits == reverseDigits
       ```
    
-   2. Python 特有/<u><strong>非通用</strong></u>，<u>将列表反序</u>： list.reverse()
+   2. Python 特有/<u><strong>非通用</strong></u>，<u>将列表反序</u>： `list.reverse()`
       ——部分语言内置函数库或开发框架也有类似方法
       
       ```python
-      def isHuiWenShu2(number:int):
+      def isPalindrome2(number:int):
           # 获得数字对应的字符串
           digits = str(number)
           # 从字符串构造列表
@@ -148,13 +148,13 @@
       
       **思路提示1：**
       
-      > 十进制数的每一位，对应的数学含义是 `10 的 n-1 次方`。
+      > 十进制数的每一位，对应的数学含义是 `10 的 n-1 次方` 有 `n` 个。
       > 
       > 例如：12345
       > 
-      > 千位对应着 10 的 3-1 次方，也就是 100；
+      > `千位` 对应着 `10 的 3-1 次方`，也就是 `100`，有 `3` 个；
       > 
-      > 12345 的千位是 2，意味着 2 个 1000；百位是 3，意味着 3 个 100，以此类推。
+      > 12345 的`千位是 2`，意味着 `2 个 1000`；`百位是 3`，意味着 `3 个 100`，以此类推。
       
       例如：12345 整个数字拆分为：
       
@@ -168,13 +168,23 @@
       10000 + 2000 + 300 + 40 + 5 = 12345
       $$
       
-      **思路提示2：**
+      **思路提示2：** 求一个数字的个位数字？
       
-      > 求某个数字的某位上的数字是几，可以将该数字缩小 10 的 n-1 次方倍，然后求其除以 10 的余数。
+      ——先自己想想再看：
+      
+      > 如果要取末位（个位）上的数字，只需对 10 求模即可，即除以十的余数。
+      > 
+      > 例如：12345 的个位，是：`12345 % 10 = 5`
+      
+      **思路提示3：** 求一个数字上任意位的数字？
+      
+      ——先自己想想再看：
+      
+      > 求某个数字的某位上的数字是几，可以将该数字缩小 10 的 n-1 次方倍并取整数部分，然后求其除以 10 的余数。
       > 
       > 例如：12345 的百位上的数字是：`(12345 // 100) % 10 = 3`
       > 
-      > 求 12345 百位上的数字，则先将 12345 缩小 100 倍（10的2次方），抛弃小数点后的部分得到 123（直接整除），然后除以 10 求余数（对 10 求模）。
+      > 求 12345 百位上的数字，则先将 `12345 缩小 100 倍`（10的2次方），抛弃小数点后的部分得到 123（直接整除），然后除以 10 求余数（对 10 求模）。
       > 
       > 类似，求 12345 千位上的数字：`(12345 // 1000) % 10 = 2`
       
@@ -184,17 +194,17 @@
       
       ```python
       # 用数学方法求指定位置上的数字，比如 12345，求第右边数第2位（十位）和第4位（千位）
-      def qiuMouWeiShuZi(number:int, pos:int):
+      def getDigitByPos(number:int, pos:int):
           x = number    # 比如 12345
           # 略，考验你的时候到了，请自行补全代码
       
           return x
       
-      def isHuiWenShu5(number:int):
+      def isPalindrome(number:int):
           # 请自行补全代码，加上循环对比每一位与对称位置的数字
           #for i in ...
-              #digit1 = qiuMouWeiShuZi(n, i??)
-              #digit2 = qiuMouWeiShuZi(n, i??)
+              #digit1 = getDigitByPos(n, i??)
+              #digit2 = getDigitByPos(n, i??)
               #print(digit1, digit2, digit1 == digit2)
               # 如果不相等，则
       
@@ -258,9 +268,9 @@
 
 很显然，又需要拆分数字了。
 
-有了上一次判断回文数的经验，拆分数字有很多种方法。这一次的练习，重点在复习和巩固的基础上，学习和练习 Python 特有的【<mark>推导式</mark>】，理解和掌握【<mark>可迭代/可枚举类型</mark>】。
+有了上一次`判断回文数`的经验，拆分数字有很多种方法。这一次的练习，重点在复习和巩固的基础上，学习和练习 Python 特有的`推导式`，理解和掌握`可迭代/可枚举类型`。
 
-注意：部分编程语言有类似的方式实现类似的功能，但 Python 将之内置在 “语言” 级别提供，而不需要依赖外部函数等。
+注意：部分编程语言有类似的方式实现类似的功能，但 Python 将之内置在 “语言” 级别提供，而不需要依赖外部函数等。享受 `Python 语法糖` 之余，需掌握通用方法。
 
 **编程练习：** 
 
@@ -270,15 +280,15 @@
 
 ```python
 # 判断一个数字是否是水仙花数，这里默认按每位上的数字的三次方计算
-def isShuiXianHuaShu1(number:int, power:int = 3):
+def isArmstrongNumber1(number:int, power:int = 3):
     # 将整数值的 number 转为字符串 digits
     digits = str(number)
-    summation = 0    # 这一句可以省略：Python 中不需要定义变量和赋予初始值
+    result = 0    # 这一句可以省略：Python 中不需要定义变量和赋予初始值
     for i in range(len(digits)):       # 循环，用 number 的长度作为循环次数
         item = int(digits[i])**power   # 计算每一位的 power 次方
-        summation += item                # 累加
+        result += item                # 累加
 
-    return summation == number    # 是否是水仙花数   # 累加
+    return result == number    # 是否是水仙花数   # 累加
 ```
 
 2. **版本 2：** 基于索引的循环和取值方式改为迭代
@@ -302,16 +312,16 @@ for digit in digits:           # 迭代 number 的每一位
 
 ```python
 # 判断一个数字是否是水仙花数，这里默认按每位上的数字的三次方计算
-def isShuiXianHuaShu2(number:int, power:int = 3):
+def isArmstrongNumber2(number:int, power:int = 3):
     # 将整数值的 number 转为字符串 digits
     digits = str(number)
 
-    summation = 0    # 这一句可以省略：Python 中不需要定义变量和赋予初始值
+    result = 0    # 这一句可以省略：Python 中不需要定义变量和赋予初始值
     for digit in digits:           # 迭代 number 的每一位
         item = int(digit)**power   # 计算每一位的 power 次方
-        summation += item            # 累加
+        result += item            # 累加
 
-    return summation == number    # 是否是水仙花数
+    return result == number    # 是否是水仙花数
 ```
 
 3. **版本 3：** Python 推导式
@@ -320,18 +330,18 @@ def isShuiXianHuaShu2(number:int, power:int = 3):
 
 ```python
 # 判断一个数字是否是水仙花数，这里默认按每位上的数字的三次方计算
-def isShuiXianHuaShu3(number:int, power:int = 3):
+def isArmstrongNumber3(number:int, power:int = 3):
     # 将整数值的 number 转为字符串 digits
     digits = str(number)
     # 用推导式生成一个列表，列表中的每个元素是 number 的每一位的 power 次方
     list = [int(digit)**power for digit in digits]
     # digit 是式子中的临时变量
 
-    summation = 0    # 这一句可以省略：Python 中不需要定义变量和赋予初始值
+    result = 0    # 这一句可以省略：Python 中不需要定义变量和赋予初始值
     for item in list:           # 迭代列表中的每一个元素，对应 number 的每一位的 power 次方
-        summation += item         # 累加
+        result += item         # 累加
 
-    return summation == number    # 是否是水仙花数
+    return result == number    # 是否是水仙花数
 ```
 
 4. **版本4：** 将迭代列表并累加求和部分，改为 Python 内置函数 `sum()`
@@ -341,19 +351,19 @@ def isShuiXianHuaShu3(number:int, power:int = 3):
 
 ```python
 # 判断一个数字是否是水仙花数，这里默认按每位上的数字的三次方计算
-def isShuiXianHuaShu4(number:int, power:int = 3):
+def isArmstrongNumber4(number:int, power:int = 3):
     digits = str(number)
     list = [int(digit)**power for digit in digits]     #推导式， digit 是式子中的临时变量
-    summation = sum(list)         # 用 Python 内置的 sum 函数计算列表中所有元素的和
+    result = sum(list)         # 用 Python 内置的 sum 函数计算列表中所有元素的和
 
-    return summation == number    # 是否是水仙花数素的和
+    return result == number    # 是否是水仙花数素的和
 ```
 
-5. **版本5：** 基于 Python 语法糖的**极简 “优化”**
+5. **版本5：** 基于 `Python 语法糖` 的**极简 “优化”**
 
 ```python
 # 判断一个数字是否是水仙花数：极简版本
-def isShuiXianHuaShu5(number:int, power:int = 3):
+def isArmstrongNumber5(number:int, power:int = 3):
     return number == sum(int(digit)**power for digit in str(number))
 ```
 
@@ -368,6 +378,20 @@ def isShuiXianHuaShu5(number:int, power:int = 3):
 所以，面对这类技巧——<mark>掌握它，可以用，但不要滥用，不要给自己和别人留下麻烦</mark>。
 
 <mark>如果有人用来 “炫技”，呵呵一笑而过</mark>，`不与夏虫语冰`。
+
+参考上一节 《求回文数》中学习到的 `用数学方法拆分每一位上的数字` 的方法，重新实现求水仙花数的代码，请自行尝试，参考代码如下：
+
+```python
+def isArmstrongNumber(number, power:int = 3):
+    n = len(str(number))
+    result = 0
+    temp = number
+    while temp > 0:
+        digit = temp % 10        # 求末位上的数字
+        result += digit ** power # 累加到结果变量
+        temp //= 10              # 缩小十倍，以便求下一位
+    return result == number
+```
 
 <mark>**扩展编程练习：**</mark>
 
