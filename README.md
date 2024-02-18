@@ -1,12 +1,14 @@
 # Python 学习笔记：2024 年寒假
 
-目录：
+**说明：**
 
-<img src="file:///C:/Users/play/AppData/Roaming/marktext/images/2024-02-18-15-50-09-image.png" title="" alt="" width="379">
-
-本文内容较长，且在持续更新中。
+> 本文内容较长，持续更新中，连载于：`github/xiaohaimiao` [Python 学习笔记](https://github.com/xiaohaimiao/Python-Learning/ "Python 学习笔记")
 
 在 `github` 或 `markdown` 编辑器中阅读本文时，可打开其目录功能方便浏览和跳转。
+
+> + `github` 页面中，点击文档右上角的目录图标；
+> 
+> + `marktext` 编辑器中，按 `Ctrl-K`
 
 ## 零：写在前面
 
