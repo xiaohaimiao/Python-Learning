@@ -1343,7 +1343,6 @@ if solve_maze(maze, start, end):
     print("存在从起点到终点的路径")
 else:
     print("不存在从起点到终点的路径")
-
 ```
 
 #### 补充说明：走迷宫与八皇后
