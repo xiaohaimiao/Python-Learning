@@ -17,8 +17,7 @@ def Euclidean2(max:int, min:int):
         yu = max % min
         if yu == 0:
             return min
-        max = min
-        min = yu
+        max, min = min, yu
     return
 
 if __name__ == "__main__":

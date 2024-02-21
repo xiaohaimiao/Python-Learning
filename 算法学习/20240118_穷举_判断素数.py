@@ -1,7 +1,7 @@
 #2024/1/18
 import math
 
-def IsPrime(n):
+def IsPrime(n:int):
     if n < 2:
         return False
     
