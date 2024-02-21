@@ -1,17 +1,17 @@
 def isShuiXianHuaShu(number:int, power:int):
     digits = str(number)
-    summary = 0
+    summation = 0
     for digit in digits:
-        summary += int(digit)**power
+        summation += int(digit)**power
 
-    return summary == number
+    return summation == number
 
 def isShuiXianHuaShu2(number:int, power:int):
     digits = str(number)
     list = [int(digit)**power for digit in digits]
-    summary = sum(list)
+    summation = sum(list)
 
-    return summary == number
+    return summation == number
     #return number == sum([int(digit)**power for digit in str(number)])
 
 def find_narcissistic_numbers(power:int = 3):

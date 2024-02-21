@@ -1,8 +1,8 @@
 def jieHe(n):
-    summary = 0
+    summation = 0
     for i in range(1, n + 1):
-        summary += i
-    return summary
+        summation += i
+    return summation
 
 def jieHe2(n):
     if n <= 0:
@@ -22,10 +22,10 @@ def jieCheng2(n):
     return jieCheng2(n - 1) * n           
 
 def jieCheng(n):
-    summary = 1
+    summation = 1
     for i in range(1, n + 1):
-        summary *= i
-    return summary
+        summation *= i
+    return summation
 
 n = 100
 print(str(n) + " 的阶和：", jieHe3(n))
