@@ -83,7 +83,7 @@
 
 #### 编程练习：
 
-参考代码如下，请自行实现后再对照查阅：
+Python 参考代码如下，请自行实现后再对照查阅（[求素数 C 代码](https://github.com/coffeescholar/C_CPP-Learning/blob/main/%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E7%BB%83%E4%B9%A0/01_%E6%B1%82%E7%B4%A0%E6%95%B0.c)）：
 
 ```python
 def isPrime(number: int):
@@ -143,10 +143,22 @@ def isPrime(number: int):
         return False
     if number == 2:
         return True
-    if number % 2 == 0: # 排除偶数
+    for i in range(3, number//2 + 1, 2): # 从 3 到 n/2 的奇数，步长为 2 跳过偶数
+        if number % i == 0: # 是否整除
+            return False
+    return True
+```
+
+继续看，不仅 2 的倍数，3 的倍数也显然不是质数，2 x 3 = 6 包含了所有它们的公倍数，且起点可以从 5 开始，于是：
+
+```python
+def isPrime(number: int):
+    if number < 2:
         return False
-    # 暂时略过排除 3、5、7 的倍数
-    for i in range(3, number//2 + 1, 2): # 从 3 到 n/2 的奇数，忽略偶数
+    if number == 2:
+        return True
+    # 从 5 到 n/2，步长 6，跳过 2、3 的倍数
+    for i in range(5, number//2 + 1, 6): 
         if number % i == 0: # 是否整除
             return False
     return True
@@ -188,9 +200,8 @@ def isPrime(number: int):
         return True
     if number % 2 == 0: # 排除偶数
         return False
-    # 暂时略过排除 3、5、7 的倍数
-    for i in range(3, int(number**0.5) + 1, 2): 
-        # 从 3 到 n的平方根 的奇数，忽略偶数
+    # 从 5 到 n 的平方根，步长为 6
+    for i in range(5, int(number**0.5) + 1, 6): 
         if number % i == 0: # 是否整除
             return False
     return True
@@ -242,6 +253,8 @@ $n/2$ 与 $\sqrt{n}$ 哪个大？——如何求证？
 > - 编写函数 `isPalindrome(number:int)`，判断传入的参数 `number` 是否是回文数。如果是，返回 `True`，否则返回 `False`；
 > 
 > - 再调用这个函数，找出四位数中的回文数，打印并计算个数。
+
+[求回文数 C 代码](https://github.com/coffeescholar/C_CPP-Learning/blob/main/%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E7%BB%83%E4%B9%A0/02_%E6%B1%82%E5%9B%9E%E6%96%87%E6%95%B0.c)
 
 #### 思路分析：
 
@@ -454,6 +467,8 @@ def isPalindrome(number:int):
 > - 编写一个函数 `isArmstrongNumber(number:int)`，判断传入的参数 `number` 是否是水仙花数。如果是，返回 `True`，否则返回 `False`；
 > 
 > - 调用这个函数，判断 `10000` 以内的水仙花数并输出。
+
+[求水仙花数 C 代码](https://github.com/coffeescholar/C_CPP-Learning/blob/main/%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E7%BB%83%E4%B9%A0/03_%E6%B1%82%E6%B0%B4%E4%BB%99%E8%8A%B1%E6%95%B0.c)
 
 #### 思路分析：
 
