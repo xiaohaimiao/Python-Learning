@@ -1,6 +1,6 @@
 # 陪伴小学生学习 Python 笔记：2024 年寒假
 
-## ——一、编程入门练习
+## 之一、算法入门练习
 
 ---
 
@@ -22,9 +22,9 @@
 
 [零：关于 “青少年编程” 的看法](Readme_0.md "查阅：零：关于 “青少年编程” 的看法")
 
-一、编程入门练习
+一、算法入门练习
 
-[二、算法入门练习](Readme_2.md "查阅：二、算法入门练习")
+[二、算法进阶练习](Readme_2.md "查阅：二、算法进阶练习")
 
 ---
 
@@ -81,9 +81,11 @@
 
 4. **逐步优化算法**：先用代码编写出最简单的算法，再进一步优化。
 
+[求素数 C 代码](https://github.com/coffeescholar/C_CPP-Learning/blob/main/%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E7%BB%83%E4%B9%A0/01_%E6%B1%82%E7%B4%A0%E6%95%B0.c)
+
 #### 编程练习：
 
-Python 参考代码如下，请自行实现后再对照查阅（[求素数 C 代码](https://github.com/coffeescholar/C_CPP-Learning/blob/main/%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E7%BB%83%E4%B9%A0/01_%E6%B1%82%E7%B4%A0%E6%95%B0.c)）：
+Python 参考代码如下，请自行实现后再对照查阅：
 
 ```python
 def isPrime(number: int):
@@ -200,7 +202,7 @@ def isPrime(number: int):
         return True
     if number % 2 == 0: # 排除偶数
         return False
-    # 从 5 到 n 的平方根，步长为 6
+    # 从 5 到 n/2，步长 6，跳过 2、3 的倍数
     for i in range(5, int(number**0.5) + 1, 6): 
         if number % i == 0: # 是否整除
             return False
@@ -499,7 +501,7 @@ def isPalindrome(number:int):
 
 ```python
 # 判断一个数字是否是水仙花数，这里默认按每位上的数字的三次方计算
-def isArmstrongNumber1(number:int, power:int = 3):
+def is_Armstrong_Number1(number:int, power:int = 3):
     # 将整数值的 number 转为字符串 digits
     digits = str(number)
     result = 0    # 这一句可以省略：Python 中不需要定义变量和赋予初始值
@@ -543,7 +545,7 @@ for digit in digits:           # 迭代 number 的每一位
 
 ```python
 # 判断一个数字是否是水仙花数，这里默认按每位上的数字的三次方计算
-def isArmstrongNumber2(number:int, power:int = 3):
+def is_Armstrong_Number2(number:int, power:int = 3):
     # 将整数值的 number 转为字符串 digits
     digits = str(number)
 
@@ -561,7 +563,7 @@ def isArmstrongNumber2(number:int, power:int = 3):
 
 ```python
 # 判断一个数字是否是水仙花数，这里默认按每位上的数字的三次方计算
-def isArmstrongNumber3(number:int, power:int = 3):
+def is_Armstrong_Number3(number:int, power:int = 3):
     # 将整数值的 number 转为字符串 digits
     digits = str(number)
     # 用推导式生成一个列表，列表中的每个元素是 number 的每一位的 power 次方
@@ -582,7 +584,7 @@ def isArmstrongNumber3(number:int, power:int = 3):
 
 ```python
 # 判断一个数字是否是水仙花数，这里默认按每位上的数字的三次方计算
-def isArmstrongNumber4(number:int, power:int = 3):
+def is_Armstrong_Number4(number:int, power:int = 3):
     digits = str(number)
     list = [int(digit)**power for digit in digits] #推导式， digit 是式子中的临时变量
     result = sum(list)         # 用 Python 内置的 sum 函数计算列表中所有元素的和
@@ -594,7 +596,7 @@ def isArmstrongNumber4(number:int, power:int = 3):
 
 ```python
 # 判断一个数字是否是水仙花数：极简版本
-def isArmstrongNumber5(number:int, power:int = 3):
+def is_Armstrong_Number5(number:int, power:int = 3):
     return number == sum(int(digit)**power for digit in str(number))
 ```
 
@@ -613,7 +615,7 @@ def isArmstrongNumber5(number:int, power:int = 3):
 参考上一节 《求回文数》中学习到的 `用数学方法拆分每一位上的数字` 的方法，重新实现求水仙花数的代码，请自行尝试，参考代码如下：
 
 ```python
-def isArmstrongNumber(number, power:int = 3):
+def is_Armstrong_Number(number, power:int = 3):
     n = len(str(number))
     result = 0
     temp = number
@@ -658,9 +660,11 @@ def isArmstrongNumber(number, power:int = 3):
 
 ##### 1. 递推方式：
 
+[求阶和阶乘 C 代码](https://github.com/coffeescholar/C_CPP-Learning/blob/main/%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E7%BB%83%E4%B9%A0/04_%E6%B1%82%E9%98%B6%E5%92%8C%E9%98%B6%E4%B9%98.c)
+
 ```python
 # 计算 n 的阶和
-def sum_of_factorials(n):
+def sum_of_Factorials(n):
     sum = 0
     for i in range(1, n+1):
         sum += i
@@ -678,7 +682,7 @@ def factorial(n):
 
 ```python
 n = 5
-print(sum_of_factorials(n))   # 输出：15
+print(sum_of_Factorials(n))   # 输出：15
 print(factorial(n))           # 输出：120
 ```
 
@@ -698,31 +702,32 @@ print(factorial(n))           # 输出：120
 
 ```python
 # 计算阶和的递归函数
-def sum_of_factorials(n):
+def sum_of_Factorials_Recursive(n):
     return n + sum_of_factorials(n-1)
 
 # 计算阶乘的递归函数
-def factorial(n):
-    return n * factorial(n-1)
+def factorial_Recursive(n):
+    return n * factorial_Recursive(n-1)
 ```
 
 但因为参数 `n` 可能为负数，所以需要加上限制条件，否则就会无穷无尽、无法终止了。
 
 ```python
 # 计算阶和的递归函数
-def sum_of_factorials(n:int):
-    if n <= 0 return 0  # 以后还要学习处理错误的方式 
+def sum_of_Factorials_Recursive(n:int):
+    if n <= 0 return 0  # 终止递归（以后还要学习处理错误的方式）
     if n == 1:
         return 1
     else:
-        return n + sum_of_factorials(n-1)
+        return n + sum_of_Factorials_Recursive(n-1)
+
 # 计算阶乘的递归函数
-def factorial(n:int):
-    if n < 0 return 0 # 以后还要学习处理错误的方式
+def factorial_Recursive(n:int):
+    if n < 0 return 0 # 终止递归（以后还要学习处理错误的方式）
     if n == 1:
         return 1
     else:
-        return n * factorial(n-1)
+        return n * factorial_Recursive(n-1)
 ```
 
 于是，将求阶和、求阶乘的方式，从循环 `1 - n` 的递推方式，改为了 **"自己调用自己" 的递归方式**。
@@ -816,7 +821,7 @@ def factorial(n:int):
 
 ```python
 # 用递推方式求斐波那契数列
-def fibonacci_iterative(n:int):
+def fibonacci_Iterative(n:int):
     if n <= 0:
         return "输入的数必须是正整数"
     elif n == 1:
@@ -837,7 +842,7 @@ def fibonacci_iterative(n:int):
 
 ```python
 # 用递归方式求斐波那契数列
-def fibonacci_recursive(n:int):
+def fibonacci_Recursive(n:int):
     if n <= 0:
         return "输入的数必须是正整数"
     elif n == 1:
@@ -845,12 +850,12 @@ def fibonacci_recursive(n:int):
     elif n == 2:
         return [0, 1]
     else:    # 从 3 开始采用递归，小于 3 终止递归，直接返回结果
-        fib_sequence = fibonacci_recursive(n-1)
+        fib_sequence = fibonacci_Recursive(n-1)
         fib_sequence.append(fib_sequence[-1] + fib_sequence[-2])
         return fib_sequence
 ```
 
-函数`fibonacci_recursive(n)`使用递归的方式来计算斐波那契数列的前 `n` 个数。它通过将问题分解为两个子问题：计算前 $n-1$ 个斐波那契数，并将结果存储在一个列表中，然后将最后两个数相加得到第 `n` 个斐波那契数，并将其添加到列表中返回。
+函数`fibonacci_Recursive(n)`使用递归的方式来计算斐波那契数列的前 `n` 个数。它通过将问题分解为两个子问题：计算前 $n-1$ 个斐波那契数，并将结果存储在一个列表中，然后将最后两个数相加得到第 `n` 个斐波那契数，并将其添加到列表中返回。
 
 请注意，递归函数中一定要设置终止递归的条件。本例中，当 $n < 3$ 时，将不再 ”**自己调用自己**“ 从而终止继续递归。
 
@@ -858,8 +863,8 @@ def fibonacci_recursive(n:int):
 
 ```python
 n = 10
-print(fibonacci_iterative(n)) # 输出：[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
-print(fibonacci_recursive(n)) # 输出：[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+print(fibonacci_Iterative(n)) # 输出：[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+print(fibonacci_Recursive(n)) # 输出：[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
 ```
 
 上面的例子中，可以用推导式简化列表部分，有兴趣的话请自行练习，就不展开了。
@@ -904,7 +909,7 @@ print(fibonacci_recursive(n)) # 输出：[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
 
 ```python
 # 用递推方式实现欧几里德算法
-def gcd_iterative(a:int, b:int):
+def gcd_Iterative(a:int, b:int):
     if a < b:
         a, b = b, a  # 交换 a 和 b 的值，确保 a 大于等于 b
     while b != 0:    # 循环的终止条件
@@ -912,14 +917,14 @@ def gcd_iterative(a:int, b:int):
     return a
 
 # 用递归方式实现欧几里德算法
-def gcd_recursive(a:int, b:int):
+def gcd_Recursive(a:int, b:int):
     if a < b:
         a, b = b, a   # 交换 a 和 b 的值，确保 a 大于等于 b
     if b == 0:        # 递归的终止条件
         return a
     else:
         # 将 b 和 a 除以 b 的余数，作为新的 'a, b' 递归调用自己
-        return gcd_recursive(b, a % b)
+        return gcd_Recursive(b, a % b)
 ```
 
 这两个函数使用递归的方式来计算两个整数 a 和 b 的最大公约数：
@@ -931,8 +936,8 @@ def gcd_recursive(a:int, b:int):
 ```python
 a = 30
 b = 45
-print(gcd_iterative(a, b))   # 输出：15
-print(gcd_recursive(a, b))   # 输出：15
+print(gcd_Iterative(a, b))   # 输出：15
+print(gcd_Recursive(a, b))   # 输出：15
 ```
 
 #### 编程拓展：
@@ -1005,7 +1010,7 @@ print(b)  # 输出：10
 
 #### 题目要求：
 
-> 编写一个 Python 函数 `hanoi(n, source, target, auxiliary)`，用来求解汉诺塔问题。函数的参数如下：
+> 编写一个 Python 函数 `hanoi_Recursive(n, source, target, auxiliary)`，用来求解汉诺塔问题。函数的参数如下：
 > 
 > - `n`：整数，表示金盘的数量，范围为 1 到 64；
 > - `source`：字符串，表示起始柱子的名称；
@@ -1025,7 +1030,7 @@ target = "C"
 auxiliary = "B"
 
 print("递归实现：")
-hanoi_recursive(n, source, target, auxiliary)
+hanoi_Recursive(n, source, target, auxiliary)
 ```
 
 输出：
@@ -1047,17 +1052,19 @@ hanoi_recursive(n, source, target, auxiliary)
 
 #### 编程练习：
 
-请自行实现函数 `hanoi_recursive()`，参考代码如下：
+请自行实现函数 `hanoi_Recursive()`，参考代码如下：
 
 ```python
 # 递归方式求解汉诺塔问题，source 是起点柱，target 是目标柱，auxiliary 是辅助柱
-def hanoi_recursive(n:int, source, target, auxiliary):
+def hanoi_Recursive(n:int, source, target, auxiliary):
     if n == 1:
         print(f"移动 1 号盘，从 {source} 到 {target}")
     else:
-        hanoi_recursive(n-1, source, auxiliary, target)
+        # 这里如何注释？
+        hanoi_Recursive(n-1, source, auxiliary, target)
         print(f"移动 {n} 号盘，从 {source} 到 {target}")
-        hanoi_recursive(n-1, auxiliary, target, source)
+        # 这里如何注释？
+        hanoi_Recursive(n-1, auxiliary, target, source)
 ```
 
 在每次递归调用时，先检查盘子的数量。如果只有一个盘子，直接将它从起始柱子移动到目标柱子。否则，递归地调用函数来解决两个子问题：
@@ -1115,20 +1122,20 @@ def hanoi_recursive(n:int, source, target, auxiliary):
 > 
 > ```python
 > # 递归方式求解汉诺塔问题，source 是起点柱，target 是目标柱
-> def hanoi_recursive(n:int, source:int, target:int):
+> def hanoi_Recursive2(n:int, source:int, target:int):
 >     if n == 1:
 >         print(f"移动 1 号盘，从 {source} 号柱到 {target} 号柱")
 >     else:
->         hanoi_recursive(n-1, source, 6 - source - target)
+>         hanoi_Recursive2(n-1, source, 6 - source - target)
 >         print(f"移动 {n} 号盘，从 {source} 号柱到 {target} 号柱")
->         hanoi_recursive(n-1, 6 - source - target, target)
+>         hanoi_Recursive2(n-1, 6 - source - target, target)
 > 
 > n = 3
 > source = 1
 > target = 3
 > 
 > print("递归实现：")
-> hanoi_recursive2(n, source, target)
+> hanoi_Recursive2(n, source, target)
 > ```
 
 ---
@@ -1143,7 +1150,7 @@ def hanoi_recursive(n:int, source, target, auxiliary):
 > 
 > 请用递归方式编写一个 Python 函数，解决走迷宫问题。
 > 
-> - 函数名为 `solve_maze(maze, start, end)`，接收三个参数：
+> - 函数名为 `solve_Maze(maze, start, end)`，接收三个参数：
 >   
 >   - `maze` 是代表迷宫的二维列表，其中 `0` 表示`空间`，`1` 表示`墙壁`；
 >   
@@ -1173,7 +1180,7 @@ start = (0, 0)  # 起点位置
 end = (4, 4)  # 终点位置
 
 # 调用解答函数
-if solve_maze(maze, start, end):
+if solve_Maze(maze, start, end):
     print("存在从起点到终点的路径")
 else:
     print("不存在从起点到终点的路径")
@@ -1196,7 +1203,7 @@ else:
 下面是递归方式的解答和调用示例代码，请自行编程实现再参考：
 
 ```python
-def solve_maze(maze, start, end):
+def solve_Maze(maze, start, end):
     # 获取迷宫的行数和列数
     rows = len(maze)
     cols = len(maze[0])
@@ -1219,13 +1226,13 @@ def solve_maze(maze, start, end):
     print("走到：", start)
 
     # 尝试向上、向下、向左和向右四个方向移动
-    if solve_maze(maze, (start[0] - 1, start[1]), end):  # 向上移动
+    if solve_Maze(maze, (start[0] - 1, start[1]), end):  # 向上移动
         return True
-    if solve_maze(maze, (start[0] + 1, start[1]), end):  # 向下移动
+    if solve_Maze(maze, (start[0] + 1, start[1]), end):  # 向下移动
         return True
-    if solve_maze(maze, (start[0], start[1] - 1), end):  # 向左移动
+    if solve_Maze(maze, (start[0], start[1] - 1), end):  # 向左移动
         return True
-    if solve_maze(maze, (start[0], start[1] + 1), end):  # 向右移动
+    if solve_Maze(maze, (start[0], start[1] + 1), end):  # 向右移动
         return True
 
     # 没有找到路径，返回 False
@@ -1285,7 +1292,7 @@ def solve_maze(maze, start, end):
 请先尝试自行解答，参考代码如下：
 
 ```python
-def solve_maze(maze, start, end):
+def solve_Maze_BFS(maze, start, end):
     # 获取迷宫的行数和列数
     rows = len(maze)
     cols = len(maze[0])
@@ -1354,7 +1361,7 @@ start = (0, 0)  # 起点位置
 end = (4, 4)  # 终点位置
 
 # 调用解答函数
-if solve_maze(maze, start, end):
+if solve_Maze_BFS(maze, start, end):
     print("存在从起点到终点的路径")
 else:
     print("不存在从起点到终点的路径")
@@ -1427,7 +1434,7 @@ else:
 ##### 1. 递推方式：
 
 ```python
-def eight_queens_iterative():
+def eight_Queens_Iterative():
     solutions = []
     stack = [(0, [])]  # 使用栈来存储每一行的状态，每个元素为 (row, queens)，其中 row 表示当前行数，queens 表示已放置皇后的列号列表
 
@@ -1451,18 +1458,18 @@ for solution in solutions:
 ##### 2. 递归方式：
 
 ```python
-def eight_queens_recursive(row=0, queens=[]):
+def eight_Queens_Recursive(row=0, queens=[]):
     if row == 8:
         return [queens]
 
     solutions = []
     for col in range(8):
         if all(col != q and abs(row - i) != abs(col - q) for i, q in enumerate(queens)):
-            solutions.extend(eight_queens_recursive(row + 1, queens + [col]))
+            solutions.extend(eight_Queens_Recursive(row + 1, queens + [col]))
 
     return solutions
 
-solutions = eight_queens_recursive()
+solutions = eight_Queens_Recursive()
 for solution in solutions:
     print(solution)
 ```
@@ -1471,15 +1478,15 @@ for solution in solutions:
 
 ```python
 # 调用递推方式的八皇后问题解答函数
-solutions_iterative = eight_queens_iterative()
+solutions_Iterative = eight_Queens_Iterative()
 print("递推方式解答八皇后问题:")
-for solution in solutions_iterative:
+for solution in solutions_Iterative:
     print(solution)
 
 # 调用递归方式的八皇后问题解答函数
-solutions_recursive = eight_queens_recursive()
+solutions_Recursive = eight_Queens_Recursive()
 print("递归方式解答八皇后问题:")
-for solution in solutions_recursive:
+for solution in solutions_Recursive:
     print(solution)
 ```
 
@@ -1491,8 +1498,8 @@ for solution in solutions_recursive:
 
 [零：关于 “青少年编程” 的看法](Readme_0.md "查阅：零：关于 “青少年编程” 的看法")
 
-一、编程入门练习
+一、算法入门练习
 
-[二、算法入门练习](Readme_2.md "查阅：二、算法入门练习")
+[二、算法进阶练习](Readme_2.md "查阅：二、算法进阶练习")
 
 ---
