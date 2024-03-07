@@ -81,7 +81,7 @@
 
 4. **逐步优化算法**：先用代码编写出最简单的算法，再进一步优化。
 
-> [求素数 C 代码](https://github.com/coffeescholar/C_CPP-Learning/blob/main/%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E7%BB%83%E4%B9%A0/01_%E6%B1%82%E7%B4%A0%E6%95%B0.c)
+> [求素数 C 代码](https://github.com/coffeescholar/C_CPP-Learning/blob/main/%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E7%BB%83%E4%B9%A0/01_%E6%B1%82%E7%B4%A0%E6%95%B0_%E7%A9%B7%E4%B8%BE_%E8%AF%95%E9%99%A4%E6%B3%95.c)
 
 #### 编程练习：
 
@@ -256,7 +256,7 @@ $n/2$ 与 $\sqrt{n}$ 哪个大？——如何求证？
 >
 > - 再调用这个函数，找出四位数中的回文数，打印并计算个数。
 
-> [求回文数 C 代码](https://github.com/coffeescholar/C_CPP-Learning/blob/main/%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E7%BB%83%E4%B9%A0/02_%E6%B1%82%E5%9B%9E%E6%96%87%E6%95%B0.c)
+> [求回文数 C 代码](https://github.com/coffeescholar/C_CPP-Learning/blob/main/%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E7%BB%83%E4%B9%A0/02_%E6%B1%82%E5%9B%9E%E6%96%87%E6%95%B0_%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8F%8D%E8%BD%AC%E5%92%8C%E6%95%B0%E5%AD%A6%E6%96%B9%E6%B3%95%E5%8F%96%E6%95%B0.c)
 
 #### 思路分析：
 
@@ -470,7 +470,7 @@ def isPalindrome(number:int):
 >
 > - 调用这个函数，判断 `10000` 以内的水仙花数并输出。
 
-> [求水仙花数 C 代码](https://github.com/coffeescholar/C_CPP-Learning/blob/main/%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E7%BB%83%E4%B9%A0/03_%E6%B1%82%E6%B0%B4%E4%BB%99%E8%8A%B1%E6%95%B0.c)
+> [求水仙花数 C 代码](https://github.com/coffeescholar/C_CPP-Learning/blob/main/%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E7%BB%83%E4%B9%A0/03_%E6%B1%82%E6%B0%B4%E4%BB%99%E8%8A%B1%E6%95%B0_%E4%BA%86%E8%A7%A3%E6%9E%9A%E4%B8%BE%E5%92%8C%E8%BF%AD%E4%BB%A3.c)
 
 #### 思路分析：
 
@@ -660,7 +660,7 @@ def is_Armstrong_Number(number, power:int = 3):
 
 ##### 1. 递推方式：
 
-> [求阶和阶乘 C 代码](https://github.com/coffeescholar/C_CPP-Learning/blob/main/%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E7%BB%83%E4%B9%A0/04_%E6%B1%82%E9%98%B6%E5%92%8C%E9%98%B6%E4%B9%98.c)
+> [求阶和阶乘 C 代码](https://github.com/coffeescholar/C_CPP-Learning/blob/main/%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%E7%BB%83%E4%B9%A0/04_%E6%B1%82%E9%98%B6%E5%92%8C%E9%98%B6%E4%B9%98_%E4%BA%86%E8%A7%A3%E9%80%92%E6%8E%A8%E5%92%8C%E9%80%92%E5%BD%92.c)
 
 ```python
 # 计算 n 的阶和
