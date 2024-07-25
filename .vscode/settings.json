@@ -1,0 +1,11 @@
+{
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8"
+    },
+    "python.formatting.provider": "none",
+    "cmake.configureOnOpen": false,
+    "files.associations": {
+        "iostream": "cpp"
+    },
+    "Codegeex.CompletionModel": "CodeGeeX Pro[Beta]"
+}
