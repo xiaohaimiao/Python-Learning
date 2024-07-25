@@ -19,14 +19,25 @@
 #V1.2 新增功能
 # 1. 备份桌面背景图片：%userprofile%\AppData\Roaming\Microsoft\Windows\Themes\CachedFiles
 
-#V1.3 为图片增加 Hash 值：MD5/Sha256
+#V1.3 为图片增加 Hash 值：Sha256
 #   用 Hash 值来判断是否有重复图片
 
 import os
-import winreg
 import shutil
+import glob
+import hashlib
+import winreg
 from PIL import Image as Image
 import datetime as dt
+
+def get_file_hash(file_path):
+    if not os.path.exists(file_path):
+        return None
+
+    with open(file_path, 'rb') as f:
+        file_hash = hashlib.sha256(f.read()).hexdigest()
+
+    return file_hash
 
 # 取出Windows聚焦的图片的地址
 def get_windows11_lockscreen_folder():
@@ -75,18 +86,18 @@ def copy_files(src_folder_path, dst_folder_path, prefix = "WallPaper"):
     
     # 获取今日年月，如：2024年8月
     year_month_str = dt.datetime.now().strftime('%Y年%m月')
-    dst_folder_path = os.path.join(dst_folder_path, year_month_str)
-    # 确保年月子目录存在
-    if not os.path.exists(dst_folder_path):
-        os.makedirs(dst_folder_path)
+    sub_folder_path = os.path.join(dst_folder_path, year_month_str)
+
     # 遍历，并复制文件到目标文件夹
     for filename in os.listdir(src_folder_path):
         src_file_path = os.path.join(src_folder_path, filename)
         dst_new_filename = construct_image_filename(src_file_path, prefix)
-        dst_file_path = os.path.join(dst_folder_path, dst_new_filename)
-        print("src_file_path", src_file_path)
-        print("dst_file_path", dst_file_path)
-        shutil.copy2(src_file_path, dst_file_path)
+        dst_file_path = os.path.join(sub_folder_path, dst_new_filename)
+        if (not find_same_file(dst_folder_path, dst_new_filename)):
+            # 确保年月子目录存在
+            if not os.path.exists(sub_folder_path):
+                os.makedirs(sub_folder_path)        
+            shutil.copy2(src_file_path, dst_file_path)
 
     return True
 
@@ -101,18 +112,30 @@ def construct_image_filename(image_path, prefix = "WallPaper"):
     # 获取文件的创建日期，构造新文件名中的日期部分
     file_creation_time = os.path.getctime(image_path)  # 获取文件创建时间
     file_create_time_str = dt.datetime.fromtimestamp(file_creation_time).strftime('%Y%m%d')  # 将时间戳转换为日期格式
-    file_ext = ".jpg"
+    file_ext = "jpg"
+    file_hash = get_file_hash(image_path)[:8]
     
     # 获取图片的长、宽，用于构造文件名中的分辨率部分
     img = Image.open(image_path)
     img_width, img_height = img.size
     img_resolution = f"{img_width}x{img_height}"
-
     # 构造新的文件名
-    new_file_name = f"{prefix}_{img_resolution}_{file_create_time_str}_{file_size_str}{file_ext}"
+    new_file_name = f"{prefix}_{img_resolution}_{file_create_time_str}_{file_size_str}_{file_hash}.{file_ext}"
 
     # 返回新的文件名
     return new_file_name
+
+
+def find_same_file(folder_path, filename):
+    # 获取文件名如 WallPaper_1080x1920_20240407_682,452.jpg 的后半部分（不含扩展名）：_xxxx_xxxxx
+    postfix = filename.split("_")[-2:]  # 获取 "_460,010_b16625da"
+    # 在 folder_path 目录及其子目录查找是否存在文件名包含 postfix 的文件
+        # 构造搜索模式
+    searchPattern = f"*_{postfix[0]}_{postfix[1]}"   # "*_460,010_b16625da.jpg"
+    # 在目标目录及子目录中搜索匹配的文件
+    matchingFiles = glob.glob(os.path.join(folder_path, "**", searchPattern), recursive=True)
+    
+    return bool(matchingFiles)
 
 # 打开“我的图片_壁纸备份_”
 def open_folder(folder_path):
