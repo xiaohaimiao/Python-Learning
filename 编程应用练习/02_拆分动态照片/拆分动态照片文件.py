@@ -17,13 +17,25 @@
 # V1.3  2024/07/29  加入命令行参数，用于指定要拆分动态照片的文件夹
 
 import os
+import sys
 
-def main():
+def main():    
     # 1. 获取目标文件的路径
-    #   获取当前脚本所在目录
-    current_folder = os.path.dirname(os.path.abspath(__file__))
+    if len(sys.argv) <= 1:
+        #   获取当前脚本所在目录
+        folder = os.path.dirname(os.path.abspath(__file__))
+    else:
+        argument = sys.argv[1]
+        if os.path.isdir(argument):
+            folder = argument
+        else:
+            print(f"\033[31m参数不是有效文件夹：{argument}\033[0m")
+            return 
     # 2.  查找该目录下所有 jpg 文件并处理
-    output_folder = do_with_files_in_folder(current_folder, "_Output_")
+    output_folder = do_with_files_in_folder(folder, "_Output_")
+    
+    # 4. 用资源管理器打开输出文件夹
+    open_folder(output_folder)
     return
 
 
@@ -44,8 +56,8 @@ def do_with_file(photo_file_path, sub_folder_name="_Output_", keyword="MotionPho
         os.mkdir(output_folder)
     # 输出文件需要放到输出文件夹
     # 构造两个文件名，分别为照片文件名、视频文件名 ".jpg" "_Photo.jpg"  "_Video.mp4"
-    jpg_filename = photo_filename.replace(".jpg", "_Photo.jpg")
-    mp4_filename = photo_filename.replace(".jpg", "_Video.mp4")
+    jpg_filename = photo_filename.lower().replace(".jpg", "_Photo.jpg")
+    mp4_filename = photo_filename.lower().replace(".jpg", "_Video.mp4")
 
     # 则将关键字位置前、后内容分别保存为两个文件
     with open(os.path.join(output_folder, jpg_filename), "wb") as f:
@@ -76,10 +88,7 @@ def do_with_files_in_folder(folder, sub_folder_name="_Output_", keyword="MotionP
                 count += 1
                 output_folder = subfolder
                 print(f"\t\033[32m{count:2d} 拆分成功：{filename}\r\n\t\t{jpg_filename}\r\n\t\t{mp4_filename}\033[0m")
-                
-            # 4. 用资源管理器打开输出文件夹
-    open_folder(output_folder)
-    return
+    return output_folder
 
 
 def open_folder(folder_path):

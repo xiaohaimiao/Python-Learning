@@ -10,6 +10,14 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal"
+        },
+        {
+            "name": "Python 调试程序: 拆分试卷.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/编程应用练习/03_拆分试卷/拆分试卷.py",
+            "console": "integratedTerminal",
+            "args": ["Test.pdf"],
         }
     ]
 }
