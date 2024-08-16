@@ -30,6 +30,9 @@ import hashlib
 import winreg
 from PIL import Image as Image
 import datetime as dt
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from MyCode import print_error, run_by_default_app, print_color
 
 def get_file_hash(file_path):
     if not os.path.exists(file_path):
@@ -77,7 +80,7 @@ def get_mypictures_folder():
 def copy_files(src_folder_path, dst_folder_path, prefix = "WallPaper"):
     # 确保源文件夹存在
     if not os.path.isdir(src_folder_path):
-        print(f"源文件不存在: {src_folder_path}")
+        print_error(f"源文件不存在: {src_folder_path}")
         return False
 
     # 确保目标文件夹存在
@@ -138,14 +141,6 @@ def find_same_file(folder_path, filename):
     
     return bool(matchingFiles)
 
-# 打开“我的图片_壁纸备份_”
-def open_folder(folder_path):
-    if os.path.isdir(folder_path):
-        os.startfile(folder_path)
-    else:
-        print(f"指定的路径不是一个有效的文件夹: {folder_path}")
-
-
 def main():
     dest_folder = os.path.join(get_mypictures_folder(), "_备份壁纸_")
 
@@ -157,7 +152,9 @@ def main():
     #open_folder(source_folder)
     # 复制桌面图片：命名规则有所变化
     copy_files(source_folder, dest_folder, "Desktop")
-    open_folder(dest_folder)
+    print_color(f"成功！", "green")
+    # 打开“我的图片_壁纸备份_”
+    run_by_default_app(dest_folder)
     return
 
 if __name__ == "__main__":

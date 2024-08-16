@@ -18,6 +18,8 @@
 
 import os
 import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from MyCode import print_error, run_by_default_app, print_color
 
 def main():    
     # 1. 获取目标文件的路径
@@ -29,13 +31,13 @@ def main():
         if os.path.isdir(argument):
             folder = argument
         else:
-            print(f"\033[31m参数不是有效文件夹：{argument}\033[0m")
+            print_error(f"参数不是有效文件夹：{argument}")
             return 
     # 2.  查找该目录下所有 jpg 文件并处理
     output_folder = do_with_files_in_folder(folder, "_Output_")
     
     # 4. 用资源管理器打开输出文件夹
-    open_folder(output_folder)
+    run_by_default_app(output_folder)
     return
 
 
@@ -82,22 +84,13 @@ def do_with_files_in_folder(folder, sub_folder_name="_Output_", keyword="MotionP
             file_path = os.path.join(folder, filename)
             subfolder, jpg_filename, mp4_filename  = do_with_file(file_path, sub_folder_name, keyword)
             if subfolder == None:
-                print(f"\t\033[31m拆分失败：{jpg_filename}\r\n\t\t{file_path}\033[0m")
+                print_error(f"\t拆分失败：{jpg_filename}\r\n\t\t{file_path}")
             else:
                 # 3. 输出结束信息
                 count += 1
                 output_folder = subfolder
-                print(f"\t\033[32m{count:2d} 拆分成功：{filename}\r\n\t\t{jpg_filename}\r\n\t\t{mp4_filename}\033[0m")
+                print_color(f"\t{count:2d} 拆分成功：{filename}\r\n\t\t{jpg_filename}\r\n\t\t{mp4_filename}", "green")
     return output_folder
-
-
-def open_folder(folder_path):
-    if folder_path:
-        if os.path.isdir(folder_path):
-            os.system("explorer " + folder_path)
-        else:
-            os.startfile(folder_path)
-    return
 
 if __name__ == "__main__":
     main()
