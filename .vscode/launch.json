@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Python 调试程序: 当前文件",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
             "name": "Python 调试程序: 下载教材.py",
             "type": "debugpy",
             "request": "launch",
@@ -16,13 +23,6 @@
             ]
         },
         {
-            "name": "Python 调试程序: 当前文件",
-            "type": "debugpy",
-            "request": "launch",
-            "program": "${file}",
-            "console": "integratedTerminal"
-        },
-        {
             "name": "Python 调试程序: 拆分试卷.py",
             "type": "debugpy",
             "request": "launch",
@@ -31,6 +31,17 @@
             "args": [
                 "Test.pdf"
             ],
-        }
+        },
+        {
+            "name": "Python 调试程序: 获取天气信息.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/编程应用练习/06_获取天气信息/获取天气信息.py",
+            "console": "integratedTerminal",
+            "args": [
+                "kunming",
+                "yunnan"
+            ]
+        },
     ]
 }

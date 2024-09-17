@@ -31,7 +31,7 @@ def print_error(text: str):
 def run_by_default_app(folder_path):
     if folder_path:
         if os.path.isdir(folder_path):
-            os.system(f"explorer{folder_path}")
+            os.system(f"explorer {folder_path}")
         else:
             os.startfile(folder_path)
     return
