@@ -5,7 +5,10 @@
     "python.formatting.provider": "none",
     "cmake.configureOnOpen": false,
     "files.associations": {
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "cstdlib": "cpp",
+        "iosfwd": "cpp",
+        "random": "cpp"
     },
     "Codegeex.CompletionModel": "CodeGeeX Pro[Beta]"
 }

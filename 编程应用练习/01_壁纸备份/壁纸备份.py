@@ -37,10 +37,8 @@ from MyCode import print_error, run_by_default_app, print_color
 def get_file_hash(file_path):
     if not os.path.exists(file_path):
         return None
-
     with open(file_path, 'rb') as f:
         file_hash = hashlib.sha256(f.read()).hexdigest()
-
     return file_hash
 
 # 取出Windows聚焦的图片的地址
@@ -143,10 +141,8 @@ def find_same_file(folder_path, filename):
 
 def main():
     dest_folder = os.path.join(get_mypictures_folder(), "_备份壁纸_")
-
     source_folder = get_windows11_lockscreen_folder()
     copy_files(source_folder, dest_folder, "WallPaper")
-    
     # 备份桌面图片文件
     source_folder = get_windows11_desktop_folder()
     #open_folder(source_folder)
