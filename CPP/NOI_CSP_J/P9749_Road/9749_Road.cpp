@@ -6,8 +6,8 @@ int main()
 {
     typedef long long ll;
 
-    ifstream fin("road2.in");
-    ofstream fout("road2.out");
+    ifstream fin("road2.in");   // input stream
+    ofstream fout("road2.out"); // output stream
 
     // 初始化数据：来自于输入，或文件
     int n, d;

@@ -8,7 +8,11 @@
         "iostream": "cpp",
         "cstdlib": "cpp",
         "iosfwd": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "vector": "cpp",
+        "fstream": "cpp"
     },
     "Codegeex.CompletionModel": "CodeGeeX Pro[Beta]"
 }
