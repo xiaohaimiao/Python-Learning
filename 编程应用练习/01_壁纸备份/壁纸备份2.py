@@ -11,9 +11,12 @@
 # 1. 更改备份目录和备份文件名
 #   1.1 改了备份的图片文件名
 #   1.2 备份目录增加了子目录
-# 2.可以备份锁屏背景
-#V1.3 新增功能
+# V1.2 新增功能
+# 可以备份锁屏背景
+# V1.3 新增功能
 # 为图片增加 Hash 值：Sha256
+# V1.4 新增功能
+# 记录日志
 
 import sys
 import os
@@ -22,6 +25,7 @@ import datetime
 import hashlib
 import glob
 import winreg
+import logging
 from PIL import Image as Image
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from MyCode import print_error, run_by_default_app, print_color
@@ -115,15 +119,6 @@ def construct_image_filename(image_path, prefix = "WallPaper"):
     new_file_name = f"{prefix}_{img_resolution}_{file_create_time_str}_{file_size_str}_{file_hash}.{file_ext}"
     return new_file_name
 
-# 打开“我的图片”
-def open_mypictures(file_folder):
-    if file_folder:
-        if os.path.isdir(file_folder):
-            os.system(f"explorer {file_folder}")
-        else:
-            os.startfile(file_folder)
-    return
-
 def main():
     mypictures_folder = os.path.join(get_mypictures_folder(), "_备份壁纸_")
     windows11_lockscreen_folder = get_windows11_lockscreen_folder()
@@ -135,8 +130,19 @@ def main():
     copy_paper(source_folder, mypictures_folder, "Desktop")
     print_color(f"成功！", "green")
     # 打开“我的图片_壁纸备份_”
-    open_mypictures(mypictures_folder) 
+    run_by_default_app(mypictures_folder) 
     return
 
 if __name__ == "__main__":
-    main()
+    # 记录日志
+    logging.basicConfig(level=logging.INFO,
+    filename = os.path.join(get_mypictures_folder(),"_备份壁纸_"),  # 日志写入文件
+    filemode = 'a',        # 写入模式，'w' 覆盖写入，'a' 追加写入
+    format = '%(asctime)s - %(levelname)s - %(message)s')
+    
+    logging.debug("开始运行")
+    try:
+        main()
+    except ZeroDivisionError as e:
+        logging.error('发生了一个错误：', exc_info=True)
+    logging.info('程序结束')
