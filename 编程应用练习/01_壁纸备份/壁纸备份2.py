@@ -136,11 +136,10 @@ def main():
 if __name__ == "__main__":
     # 记录日志
     logging.basicConfig(level=logging.INFO,
-    filename = os.path.join(get_mypictures_folder(),"_备份壁纸_"),  # 日志写入文件
+    filename = os.path.join(get_mypictures_folder(),"_备份壁纸_","日志.log"),  # 日志写入文件
     filemode = 'a',        # 写入模式，'w' 覆盖写入，'a' 追加写入
-    format = '%(asctime)s - %(levelname)s - %(message)s')
-    
-    logging.debug("开始运行")
+    format = '%(asctime)s - %(message)s')
+    logging.info("开始运行")
     try:
         main()
     except ZeroDivisionError as e:
