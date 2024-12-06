@@ -14,5 +14,6 @@
         "vector": "cpp",
         "fstream": "cpp"
     },
-    "Codegeex.CompletionModel": "CodeGeeX Pro[Beta]"
+    "Codegeex.CompletionModel": "CodeGeeX Pro[Beta]",
+    "marscode.chatLanguage": "cn"
 }

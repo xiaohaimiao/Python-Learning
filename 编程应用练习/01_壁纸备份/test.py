@@ -101,7 +101,7 @@ def write_backup_log(filename, dst_new_filename):
         logs.append({"SourceFile":filename, "BackupFile":dst_new_filename})
     # 写入数据文件
     with open(log_file_path, "w", encoding = "utf-8") as file:
-        Json.dump(logs, file, indent=4, sort_keys=True)
+        Json.dump(logs, file)
 
     return log_file_path
 
@@ -128,11 +128,8 @@ def copy_pictures(source_folder, destination_folder, prefix = "WallPaper"):
             print_error(f"create_image_filename({src_file_path}, {prefix}) 失败，忽略当前文件。")
             continue
         dst_file_path = os.path.join(sub_folder_path, dst_new_filename)
-        #Test: 注意测试代码加了 not
-        #if (not find_same_file_by_hash(destination_folder, dst_new_filename)):
-        if (find_same_file_by_hash(destination_folder, dst_new_filename)):
-            if not os.path.exists(sub_folder_path):
-                os.makedirs(sub_folder_path)
+        if (not find_same_file_by_hash(destination_folder, dst_new_filename)):
+        #if (find_same_file(file_folder2, dst_new_filename)):
             shutil.copy2(src_file_path, dst_file_path)
             # 保存备份记录
             write_backup_log(filename, dst_new_filename)
