@@ -9,6 +9,13 @@
 # 3. 拆分文件并为其命名
 # 4. 保存拆分后的文件到一个目录内
 # 5. 输出结束信息
+
+#TODO: 
+# Ver1.1   剪裁边框：对称、不对称边框
+# Ver1.2   加文字水印
+# Ver1.3   加图片水印
+# TODO: FunnyPhoto.py 有趣的照片：简单的图片叠加（水印），画面增强处理，调用AI进行重绘
+
 import os
 import sys
 from pdf2image import convert_from_path

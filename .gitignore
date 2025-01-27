@@ -1,5 +1,6 @@
 Python学习笔记：2024 年寒假.pdf
 *.exe
+*.pyc
 StarCoders/MyCode.py
 编程应用练习/Scoop_MyBucket/_MyBucket_/*
 编程应用练习/Scoop_MyBucket/_MyBucket_
@@ -8,5 +9,5 @@ StarCoders/MyCode.py
 编程应用练习/拆分动态照片/_Output_/*
 编程应用练习/03_拆分试卷/Test_A4.pdf
 编程应用练习/02_拆分动态照片/_Output_/*
-编程应用练习/__pycache__/*.
-编程应用练习/__pycache__/*.
+编程应用练习/__pycache__/*
+

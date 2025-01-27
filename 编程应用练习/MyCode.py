@@ -1,7 +1,8 @@
 import sys
 import os
 
-def print_color(text: str, color):
+
+def print_color(text: str, color="green"):
     colors = {
         "reset": "\033[0m",
         "red": "\033[031m",
@@ -23,15 +24,35 @@ def print_color(text: str, color):
     print(f"{colors[color]}{text}{colors['reset']}")
     return
 
+
 def print_error(text: str):
     print_color(text, "red")
     return
 
+# 用默认程序运行指定的文件
+
+
+def run_by_default_app(file_path):
+    # 确保是绝对路径
+    file_path = os.path.abspath(file_path) 
+        
+    #os.startfile(file_path)
+    if os.path.isdir(file_path):
+        if os.name == "NT":
+            # path 环境变量里
+            os.system(f"explorer.exe {file_path}")
+    else:
+        os.startfile(file_path)
+
+    return
+
 # 打开指定目录
-def run_by_default_app(folder_path):
-    if folder_path:
-        if os.path.isdir(folder_path):
-            os.system(f"explorer {folder_path}")
-        else:
-            os.startfile(folder_path)
+def open_folder(folder_path):
+    if not os.path.isabs(folder_path):
+        folder_path = os.path.abspath(folder_path)
+
+    if not os.path.isdir(folder_path):
+        folder_path = os.path.dirname(folder_path)
+
+    os.system(f"explorer {folder_path}")
     return
